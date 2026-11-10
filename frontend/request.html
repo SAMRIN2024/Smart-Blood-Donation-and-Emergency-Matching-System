@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blood Request</title>
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+</head>
+<body>
+
+<header>
+    <div class="logo">🩸 BloodConnect</div>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="register.html">Register</a>
+        <a href="request.html">Blood Request</a>
+        <a href="find-donors.html">Find Donors</a>
+    </nav>
+</header>
+
+<section class="page-title">
+    <h1>Emergency Blood Request</h1>
+    <p>Submit Your Blood Requirement</p>
+</section>
+
+<div class="container">
+
+    <form id="requestForm">
+
+        <input type="text" id="patientName"
+        placeholder="Patient Name" required>
+
+        <select id="requestBlood" required>
+            <option value="">Required Blood Group</option>
+            <option>A+</option>
+            <option>A-</option>
+            <option>B+</option>
+            <option>B-</option>
+            <option>O+</option>
+            <option>O-</option>
+            <option>AB+</option>
+            <option>AB-</option>
+        </select>
+
+        <input type="number" id="units"
+        placeholder="Required Units" min="1" required>
+
+        <input type="text" id="hospital"
+        placeholder="Hospital Name">
+
+        <input type="text" id="requestCity"
+        placeholder="City" required>
+
+        <input type="tel" id="requestPhone"
+        placeholder="Contact Number" required>
+
+        <label class="check">
+            <input type="checkbox" id="emergency">
+            This is an Emergency Request
+        </label>
+
+        <button type="submit">Submit Blood Request</button>
+
+    </form>
+
+    <p id="requestMessage"></p>
+
+</div>
+
+<footer>
+    <h3>🩸 BloodConnect</h3>
+    <p>Every Blood Donor is a Life Saver.</p>
+</footer>
+
+</body>
+</html>

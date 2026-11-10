@@ -1,4 +1,3 @@
-
 * {
     margin: 0;
     padding: 0;
@@ -80,16 +79,71 @@ nav a:hover {
     padding: 55px 15%;
 }
 
-.about h2,
-.container h2 {
+.about h2 {
     color: #b51225;
-    margin-bottom: 25px;
-    text-align: center;
+    margin-bottom: 20px;
 }
 
 .about p {
     line-height: 1.8;
     font-size: 17px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 40px 8%;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 3px 15px #ddd;
+}
+
+.card h3 {
+    color: #b51225;
+    margin-bottom: 15px;
+}
+
+.card p {
+    margin-bottom: 15px;
+}
+
+.card a {
+    color: #b51225;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.page-title {
+    background: linear-gradient(90deg, #800b1b, #c51d35);
+    color: white;
+    text-align: center;
+    padding: 45px 20px;
+}
+
+.page-title h1 {
+    font-size: 35px;
+    margin-bottom: 10px;
+}
+
+.about-content {
+    width: 85%;
+    margin: 40px auto;
+    line-height: 1.8;
+}
+
+.about-content h2 {
+    color: #b51225;
+    margin: 25px 0 10px;
+}
+
+.about-content ul {
+    padding-left: 25px;
 }
 
 .container {
@@ -134,13 +188,13 @@ button:hover {
     background: #850c1c;
 }
 
-.emergency-label {
+.check {
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-.emergency-label input {
+.check input {
     width: auto;
 }
 
@@ -173,6 +227,7 @@ footer {
 }
 
 @media(max-width: 700px) {
+
     header {
         flex-direction: column;
     }
@@ -188,6 +243,10 @@ footer {
 
     .hero h1 {
         font-size: 30px;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
     }
 
     .container {

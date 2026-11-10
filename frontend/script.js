@@ -1,131 +1,142 @@
-
 const API = "http://localhost:5000/api";
 
 // Donor Registration
-document.getElementById("donorForm")
-.addEventListener("submit", async function(e) {
-    e.preventDefault();
+const donorForm = document.getElementById("donorForm");
 
-    const donor = {
-        name: document.getElementById("donorName").value,
-        age: Number(document.getElementById("donorAge").value),
-        gender: document.getElementById("donorGender").value,
-        blood_group: document.getElementById("donorBlood").value,
-        phone: document.getElementById("donorPhone").value,
-        city: document.getElementById("donorCity").value
-    };
+if (donorForm) {
+    donorForm.addEventListener("submit", async function(e) {
+        e.preventDefault();
 
-    try {
-        const response = await fetch(`${API}/donors`, {
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(donor)
-        });
+        const donor = {
+            name: document.getElementById("donorName").value,
+            age: Number(document.getElementById("donorAge").value),
+            gender: document.getElementById("donorGender").value,
+            blood_group: document.getElementById("donorBlood").value,
+            phone: document.getElementById("donorPhone").value,
+            city: document.getElementById("donorCity").value
+        };
 
-        const result = await response.json();
+        try {
+            const response = await fetch(`${API}/donors`, {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(donor)
+            });
 
-        if (!response.ok) throw new Error(result.message);
+            const result = await response.json();
 
-        document.getElementById("donorMessage").innerText =
-            "Donor registered successfully!";
+            if (!response.ok) throw new Error(result.message);
 
-        this.reset();
+            document.getElementById("donorMessage").innerText =
+                "Donor registered successfully!";
 
-    } catch (error) {
-        document.getElementById("donorMessage").innerText =
-            error.message || "Registration failed!";
-    }
-});
+            this.reset();
+
+        } catch(error) {
+            document.getElementById("donorMessage").innerText =
+                error.message || "Registration failed!";
+        }
+    });
+}
 
 
 // Blood Request
-document.getElementById("requestForm")
-.addEventListener("submit", async function(e) {
-    e.preventDefault();
+const requestForm = document.getElementById("requestForm");
 
-    const request = {
-        patient_name: document.getElementById("patientName").value,
-        blood_group: document.getElementById("requestBlood").value,
-        units: Number(document.getElementById("units").value),
-        hospital: document.getElementById("hospital").value,
-        city: document.getElementById("requestCity").value,
-        phone: document.getElementById("requestPhone").value,
-        emergency: document.getElementById("emergency").checked
-    };
+if (requestForm) {
+    requestForm.addEventListener("submit", async function(e) {
+        e.preventDefault();
 
-    try {
-        const response = await fetch(`${API}/requests`, {
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(request)
-        });
+        const request = {
+            patient_name: document.getElementById("patientName").value,
+            blood_group: document.getElementById("requestBlood").value,
+            units: Number(document.getElementById("units").value),
+            hospital: document.getElementById("hospital").value,
+            city: document.getElementById("requestCity").value,
+            phone: document.getElementById("requestPhone").value,
+            emergency: document.getElementById("emergency").checked
+        };
 
-        const result = await response.json();
+        try {
+            const response = await fetch(`${API}/requests`, {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(request)
+            });
 
-        if (!response.ok) throw new Error(result.message);
+            const result = await response.json();
 
-        document.getElementById("requestMessage").innerText =
-            "Blood request submitted successfully!";
+            if (!response.ok) throw new Error(result.message);
 
-        this.reset();
+            document.getElementById("requestMessage").innerText =
+                "Blood request submitted successfully!";
 
-    } catch (error) {
-        document.getElementById("requestMessage").innerText =
-            error.message || "Request failed!";
-    }
-});
+            this.reset();
 
-
-// Search Donors
-document.getElementById("searchForm")
-.addEventListener("submit", async function(e) {
-    e.preventDefault();
-
-    const blood = document.getElementById("searchBlood").value;
-    const city = document.getElementById("searchCity").value.trim();
-
-    const results = document.getElementById("donorResults");
-
-    results.innerHTML = "Searching donors...";
-
-    try {
-        const response = await fetch(`${API}/donors`);
-
-        if (!response.ok) throw new Error("Unable to load donors");
-
-        const donors = await response.json();
-
-        const matches = donors.filter(donor =>
-            donor.blood_group === blood &&
-            donor.city.toLowerCase() === city.toLowerCase() &&
-            donor.available === 1
-        );
-
-        results.innerHTML = "";
-
-        if (matches.length === 0) {
-            results.innerHTML = "<p>No matching donors found.</p>";
-            return;
+        } catch(error) {
+            document.getElementById("requestMessage").innerText =
+                error.message || "Request failed!";
         }
+    });
+}
 
-        results.innerHTML = "<h3>Potential Matching Donors</h3>";
 
-        matches.forEach(donor => {
-            const card = document.createElement("div");
-            card.className = "donor-card";
+// Find Donors
+const searchForm = document.getElementById("searchForm");
 
-            const name = document.createElement("strong");
-            name.textContent = donor.name;
+if (searchForm) {
+    searchForm.addEventListener("submit", async function(e) {
+        e.preventDefault();
 
-            const details = document.createElement("p");
-            details.textContent =
-                `Blood Group: ${donor.blood_group} | City: ${donor.city}`;
+        const blood = document.getElementById("searchBlood").value;
+        const city = document.getElementById("searchCity").value.trim();
 
-            card.append(name, details);
-            results.appendChild(card);
-        });
+        const results = document.getElementById("donorResults");
 
-    } catch (error) {
-        results.innerHTML = "<p>Unable to search donors. Try again.</p>";
-    }
-});
+        results.innerHTML = "Searching donors...";
+
+        try {
+            const response = await fetch(`${API}/donors`);
+
+            if (!response.ok) {
+                throw new Error("Unable to load donors");
+            }
+
+            const donors = await response.json();
+
+            const matches = donors.filter(donor =>
+                donor.blood_group === blood &&
+                donor.city.toLowerCase() === city.toLowerCase() &&
+                Number(donor.available ?? 1) === 1
+            );
+
+            results.innerHTML = "";
+
+            if (matches.length === 0) {
+                results.innerHTML = "<p>No matching donors found.</p>";
+                return;
+            }
+
+            results.innerHTML = "<h3>Potential Matching Donors</h3>";
+
+            matches.forEach(donor => {
+                const card = document.createElement("div");
+                card.className = "donor-card";
+
+                const name = document.createElement("strong");
+                name.textContent = donor.name;
+
+                const details = document.createElement("p");
+                details.textContent =
+                    `Blood Group: ${donor.blood_group} | City: ${donor.city}`;
+
+                card.append(name, details);
+                results.appendChild(card);
+            });
+
+        } catch(error) {
+            results.innerHTML =
+                "<p>Unable to search donors. Check the server.</p>";
+        }
+    });
+}

@@ -1,150 +1,69 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Blood Donation System</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BloodConnect - Home</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header>
     <div class="logo">🩸 BloodConnect</div>
     <nav>
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#donor">Register</a>
-        <a href="#request">Blood Request</a>
-        <a href="#search">Find Donors</a>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="register.html">Register</a>
+        <a href="request.html">Blood Request</a>
+        <a href="find-donors.html">Find Donors</a>
     </nav>
 </header>
 
-<section class="hero" id="home">
-    <div class="hero-content">
+<section class="hero">
+    <div>
         <h1>Donate Blood, Save Lives</h1>
         <p>Find blood donors quickly during emergency situations.</p>
-        <a href="#donor" class="btn">Become a Donor</a>
-        <a href="#request" class="btn emergency">Request Blood</a>
+        <a href="register.html" class="btn">Become a Donor</a>
+        <a href="request.html" class="btn emergency">Request Blood</a>
     </div>
 </section>
 
-<section class="about" id="about">
-    <h2>About Our Project</h2>
+<section class="about">
+    <h2>Welcome to BloodConnect</h2>
     <p>
         Smart Blood Donation and Emergency Matching System
         connects blood donors with patients who need blood.
-        It helps users find potential donors based on blood
-        group and city.
+        Users can register as donors, submit blood requests
+        and search for potential donors based on blood group
+        and city.
     </p>
 </section>
 
-<section class="container" id="donor">
-    <h2>Donor Registration</h2>
+<section class="cards">
+    <div class="card">
+        <h3>🩸 Donor Registration</h3>
+        <p>Register your details and become a potential blood donor.</p>
+        <a href="register.html">Register Now</a>
+    </div>
 
-    <form id="donorForm">
-        <input type="text" id="donorName" placeholder="Full Name" required>
+    <div class="card">
+        <h3>🏥 Blood Request</h3>
+        <p>Submit your blood requirements during emergencies.</p>
+        <a href="request.html">Request Blood</a>
+    </div>
 
-        <input type="number" id="donorAge" placeholder="Age" min="18" max="65" required>
-
-        <select id="donorGender">
-            <option value="">Select Gender</option>
-            <option>Male</option>
-            <option>Female</option>
-            <option>Other</option>
-        </select>
-
-        <select id="donorBlood" required>
-            <option value="">Select Blood Group</option>
-            <option>A+</option>
-            <option>A-</option>
-            <option>B+</option>
-            <option>B-</option>
-            <option>O+</option>
-            <option>O-</option>
-            <option>AB+</option>
-            <option>AB-</option>
-        </select>
-
-        <input type="tel" id="donorPhone" placeholder="Phone Number" required>
-
-        <input type="text" id="donorCity" placeholder="City" required>
-
-        <button type="submit">Register Donor</button>
-    </form>
-
-    <p id="donorMessage"></p>
-</section>
-
-<section class="container" id="request">
-    <h2>Emergency Blood Request</h2>
-
-    <form id="requestForm">
-        <input type="text" id="patientName" placeholder="Patient Name" required>
-
-        <select id="requestBlood" required>
-            <option value="">Required Blood Group</option>
-            <option>A+</option>
-            <option>A-</option>
-            <option>B+</option>
-            <option>B-</option>
-            <option>O+</option>
-            <option>O-</option>
-            <option>AB+</option>
-            <option>AB-</option>
-        </select>
-
-        <input type="number" id="units" placeholder="Required Units" min="1" required>
-
-        <input type="text" id="hospital" placeholder="Hospital Name">
-
-        <input type="text" id="requestCity" placeholder="City" required>
-
-        <input type="tel" id="requestPhone" placeholder="Contact Number" required>
-
-        <label class="emergency-label">
-            <input type="checkbox" id="emergency">
-            This is an Emergency Request
-        </label>
-
-        <button type="submit">Submit Blood Request</button>
-    </form>
-
-    <p id="requestMessage"></p>
-</section>
-
-<section class="container" id="search">
-    <h2>Find Blood Donors</h2>
-
-    <form id="searchForm">
-        <select id="searchBlood" required>
-            <option value="">Select Blood Group</option>
-            <option>A+</option>
-            <option>A-</option>
-            <option>B+</option>
-            <option>B-</option>
-            <option>O+</option>
-            <option>O-</option>
-            <option>AB+</option>
-            <option>AB-</option>
-        </select>
-
-        <input type="text" id="searchCity" placeholder="Enter City" required>
-
-        <button type="submit">Search Donors</button>
-    </form>
-
-    <div id="donorResults"></div>
+    <div class="card">
+        <h3>🔍 Find Donors</h3>
+        <p>Search potential donors using blood group and city.</p>
+        <a href="find-donors.html">Search Donors</a>
+    </div>
 </section>
 
 <footer>
     <h3>🩸 BloodConnect</h3>
     <p>Every Blood Donor is a Life Saver.</p>
-    <p>Smart Blood Donation and Emergency Matching System</p>
     <p>© 2026 All Rights Reserved</p>
 </footer>
-
-<script src="script.js"></script>
 
 </body>
 </html>

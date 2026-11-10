@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Donor Registration</title>
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+</head>
+<body>
+
+<header>
+    <div class="logo">🩸 BloodConnect</div>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="register.html">Register</a>
+        <a href="request.html">Blood Request</a>
+        <a href="find-donors.html">Find Donors</a>
+    </nav>
+</header>
+
+<section class="page-title">
+    <h1>Donor Registration</h1>
+    <p>Become a Blood Donor</p>
+</section>
+
+<div class="container">
+    <form id="donorForm">
+
+        <input type="text" id="donorName"
+        placeholder="Full Name" required>
+
+        <input type="number" id="donorAge"
+        placeholder="Age" min="18" max="65" required>
+
+        <select id="donorGender">
+            <option value="">Select Gender</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other</option>
+        </select>
+
+        <select id="donorBlood" required>
+            <option value="">Select Blood Group</option>
+            <option>A+</option>
+            <option>A-</option>
+            <option>B+</option>
+            <option>B-</option>
+            <option>O+</option>
+            <option>O-</option>
+            <option>AB+</option>
+            <option>AB-</option>
+        </select>
+
+        <input type="tel" id="donorPhone"
+        placeholder="Phone Number" required>
+
+        <input type="text" id="donorCity"
+        placeholder="City" required>
+
+        <button type="submit">Register Donor</button>
+
+    </form>
+
+    <p id="donorMessage"></p>
+</div>
+
+<footer>
+    <h3>🩸 BloodConnect</h3>
+    <p>Every Blood Donor is a Life Saver.</p>
+</footer>
+
+</body>
+</html>
